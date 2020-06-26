@@ -12,7 +12,19 @@
         <header>
             <div class="container">
                 <img src="img/logo.png" alt="logo" />
+
+                <div class="select-gen">
+                  <select>
+                    <option>--</option>
+                    <option value="pop">Pop</option>
+                    <option value="rock">Rock</option>
+                    <option value="metal">Metal</option>
+                    <option value="jazz">Jazz</option>
+                  </select>
+                </div>
+
             </div>
+
         </header>
 
         <div class="cds-container container">
@@ -29,6 +41,7 @@
               <img src="{{ poster }}" alt="">
               <h3>{{ title }}</h3>
               <span class="author">{{ author }}</span>
+              <span class="genre">{{ genre }}</span>
               <span class="year">{{ year }}</span>
           </div>
         </script>

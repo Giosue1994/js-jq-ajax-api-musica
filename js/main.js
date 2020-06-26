@@ -8,6 +8,7 @@ $(document).ready(function() {
 // metal e jazz. In base a cosa scegliamo nella select vedremo i
 // corrispondenti cd.
 
+
   $.ajax(
     {
       url: "https://flynn.boolean.careers/exercises/api/array/music",
@@ -15,7 +16,9 @@ $(document).ready(function() {
 
       success: function(data) {
         var cds = data.response;
-        addCd(cds);
+
+          addCd(cds);
+
 
       },
 
@@ -28,18 +31,30 @@ $(document).ready(function() {
 
 });
 
+
+
+
 function addCd(arrayCds) {
 
-  var source = $("#cds-template").html();
-  var template = Handlebars.compile(source);
+  $('select').click(function (){
 
-  for (var i = 0; i <= arrayCds.length; i++) {
+    for (var i = 0; i <= (arrayCds.length - 1); i++) {
 
-    var singleCd = arrayCds[i]
-    var html = template(singleCd);
+      var singleCd = arrayCds[i];
+      var genereCd = singleCd.genre;
+      var genere = $('select option:selected').text();
 
-    $('.cds-container').append(html);
+      var source = $("#cds-template").html();
+      var template = Handlebars.compile(source);
 
-  }
+      var html = template(singleCd);
+
+      if (genereCd === genere) {
+        $('.cds-container').append(html);
+      }
+
+    }
+
+  });
 
 }
