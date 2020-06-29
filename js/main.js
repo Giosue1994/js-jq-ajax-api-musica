@@ -19,7 +19,6 @@ $(document).ready(function() {
 
           addCd(cds);
 
-
       },
 
       error: function() {
@@ -32,29 +31,31 @@ $(document).ready(function() {
 });
 
 
+$('#genre-options').change(function() {
+  var genreSelected = $(this).val();
 
+  if (genreSelected === 'all') {
+    $('.cd').show();
+  } else {
+    $('.cd').hide();
+    $('.cd.'+ genreSelected).show();
+  }
+
+});
 
 function addCd(arrayCds) {
-
-  $('select').click(function (){
+  var source = $("#cds-template").html();
+  var template = Handlebars.compile(source);
 
     for (var i = 0; i <= (arrayCds.length - 1); i++) {
 
       var singleCd = arrayCds[i];
-      var genereCd = singleCd.genre;
-      var genere = $('select option:selected').text();
-
-      var source = $("#cds-template").html();
-      var template = Handlebars.compile(source);
+      singleCd.genre = singleCd.genre.toLowerCase();
 
       var html = template(singleCd);
 
-      if (genereCd === genere) {
-        $('.cds-container').append(html);
-      }
+      $('.cds-container').append(html);
 
     }
-
-  });
 
 }
